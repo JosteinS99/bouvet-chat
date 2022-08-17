@@ -1,7 +1,11 @@
 html,
 body {
-  padding: 0;
+  color: rgb(101, 165, 117);
+  padding: 100px;
   margin: 0;
+  font-size: 72px;
+  display: flex;
+  justify-content: center;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -20,7 +24,7 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
+    color: rgb(117, 117, 117);
     background: black;
   }
 }
