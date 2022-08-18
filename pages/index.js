@@ -6,7 +6,7 @@ const socket = io.connect("http://localhost:3001");
 
 export default function Home() {
   const [userData, setUserData] = useState([]);
-  const [gender, setGender] = useState();
+  const [gender, setGender] = useState(null);
   useEffect(() => {
     axios
       .get("https://data.ssb.no/api/v0/no/table/10467/")
@@ -49,25 +49,40 @@ export default function Home() {
   const randomMaleFirstName = Math.floor(
     Math.random() * listOfMaleNames.length
   );
-  const [username, setUsername] = useState([]);
+  const [firstName, setFirstName] = useState([]);
   const [lastName, setLastName] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(null);
   // setter randomisert fornavn og etternavn basert på om indeksen til randomUsername er jentenavn eller guttenavn
   useEffect(() => {
-    if (randomUsername <= 999) {
-      setUsername(listOfFemaleNames[randomFemaleFirstName]);
-      setLastName(listOfFemaleNames[randomFemaleLastName] + "dottir");
-    } else {
-      setUsername(listOfMaleNames[randomMaleFirstName]);
-      setLastName(listOfMaleNames[randomMaleLastName] + "son");
+    if (userData[0]) {
+      if (randomUsername <= 999) {
+        setFirstName(listOfFemaleNames[randomFemaleFirstName]);
+        setLastName(listOfFemaleNames[randomFemaleLastName] + "sdottir");
+      } else {
+        setFirstName(listOfMaleNames[randomMaleFirstName]);
+        setLastName(listOfMaleNames[randomMaleLastName] + "sson");
+      }
     }
   }, [userData]);
 
-  const handleChange = () => {
-    setUsername(userData[randomUsername]);
+  // setter nytt randomisert brukernavn basert på om man velger jente eller gutt i radio inupts
+  const handleUsernameChange = () => {
+    if (gender === "jente") {
+      setFirstName(listOfFemaleNames[randomFemaleFirstName]);
+      setLastName(listOfFemaleNames[randomFemaleLastName] + "sdottir");
+    } else if (gender === "gutt") {
+      setFirstName(listOfMaleNames[randomMaleFirstName]);
+      setLastName(listOfMaleNames[randomMaleLastName] + "sson");
+    } else if (gender === null) {
+      setErrorMessage(
+        "FEIL!: Du må først velge om du ønsker jentenavn eller guttenavn."
+      );
+    }
   };
-
+  // setter verdien til gender state basert på verdien til radio inputen som klikkes med musepeker. Setter errorMessage state til null
   const handleRadioChange = (event) => {
     setGender(event.target.value);
+    setErrorMessage(null);
   };
 
   // useEffect(() => {
@@ -81,10 +96,11 @@ export default function Home() {
     <div>
       <a className="Chatterom">Chatterom</a>
       <a className="MiddleText">Ditt brukernavn er:</a>
+      <a className="Feilmelding">{errorMessage}</a>
       <a className="Brukernavn">
-        {username} {lastName}
+        {firstName} {lastName}
       </a>
-      <button onClick={handleChange}>Generer brukernavn</button>
+      <button onClick={handleUsernameChange}>Generer brukernavn</button>
       <label>Jente:</label>
       <input
         type="radio"
