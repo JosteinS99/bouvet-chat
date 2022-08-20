@@ -1,26 +1,217 @@
-html,
+/* styling for hele chatterom div-en */
+.chatterom {
+  width: 100vw;
+  height: 100vh;
+  color: #212121;
+  font-family: "Open Sans", sans-serif;
+  display: grid;
+  place-items: center;
+}
+/* fjerner scrollbar på nettsiden */
 body {
-  padding: 0;
+  margin: 0%;
+  padding: 0%;
+}
+/* styling for vellkomstsiden */
+.start-chat {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+/* for å bryte teksten slik at den ikke tar for mye plass */
+.start-chat p {
+  max-width: 580px;
+}
+/* styling for overskrift teksten på vellkomstsiden */
+.velkommen-tekst {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: -webkit-linear-gradient(45deg, #04b7e4, #05be71 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: default;
+}
+/* styling for autogenerert brukernavn på vellkomstsiden */
+.username {
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+/* styling av input radioer og labels på vellkomstsiden */
+.gender-selector {
+  display: flex;
+  align-items: center;
+}
+/* styling av input radioer på vellkomstsiden */
+.start-chat input {
+  width: 1.5em;
+  height: 1.5em;
+  margin: 7px;
+  cursor: pointer;
+}
+/* styling av Generer brukernavn knapp på vellkomstsiden */
+.generate-username {
+  width: 225px;
+  height: 50px;
+  margin: 7px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 16px;
+  background: #05be71;
+  color: #fff;
+  cursor: pointer;
+}
+.generate-username:hover {
+  background: #038b53;
+}
+/* styling av Gå til chat knapp på vellkomstsiden */
+.go-to-chat {
+  width: 225px;
+  height: 50px;
+  margin: 7px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 16px;
+  background: #04a4e4;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+.go-to-chat:hover {
+  background: #027eaf;
+}
+/* styling for feilmelding på vellkomstsiden */
+.error-message {
+  color: red;
+}
+/* styling for hele chatvindu div-en */
+.chat-box {
+  width: 300px;
+  height: 420px;
+}
+/* styling for p elementer i chatvinduet */
+.chat-box p {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
+/* styling for headeren til chatvinduet*/
+.chat-header {
+  height: 45px;
+  border-radius: 2px;
+  background: -webkit-linear-gradient(75deg, #04b7e4, #05be71 80%);
+  position: relative;
+  cursor: pointer;
 }
-
-* {
-  box-sizing: border-box;
+/* styling for tekst i headeren*/
+.chat-header p {
+  display: block;
+  padding: 0 1em 0 2em;
+  color: #fff;
+  font-weight: 700;
+  line-height: 45px;
 }
+/* styling for selve chatvinduet hvor meldingene ligger*/
+.chat-body {
+  height: calc(450px - (45px + 70px));
+  border: 1px solid #263238;
+  background: rgb(231, 231, 231);
+}
+/* styling for ScrollToBottom component*/
+.message-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+/* fjerner webkit scrollbar fra chattevindu */
+.message-container::-webkit-scrollbar {
+  display: none;
+}
+/* styling for meldinger som er inni div-en */
+.message {
+  height: auto;
+  padding: 10px;
+  display: flex;
+}
+/* styling for meldinger som sendes */
+.message-content {
+  width: auto;
+  height: auto;
+  min-height: 40px;
+  max-width: 120px;
+  background-color: rgb(95, 178, 255);
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+/* meldinger du sender havner på høyre side */
+#you {
+  justify-content: flex-end;
+}
+/* innhold i meldinger du sender starter til venstre */
+#you .message-content {
+  justify-content: flex-start;
+}
+/* styling for timestamp som sendes fra deg */
+#you .message-time {
+  text-align: end;
+  margin-right: 5px;
+  font-size: 11px;
+}
+/* setter meldinger fra andre avsendere til venstre i chatvindu  */
+#other {
+  justify-content: flex-start;
+}
+/* styling for meldiger fra andre avsendere */
+#other .message-content {
+  justify-content: flex-start;
+  background-color: rgb(165, 165, 165);
+}
+/* setter timestamp til venstre på meldinger fra andre avsendere */
+#other .message-time {
+  text-align: start;
+  margin-left: 5px;
+  font-size: 11px;
+}
+/* styling for navnet på avsender */
+.message-author {
+  margin-left: 5px;
+  font-weight: bold;
+  display: flex;
+  font-size: 12px;
+}
+/* styling for bunnen av chatvinduet */
+.chat-footer {
+  height: 40px;
+  border: 1px solid #263238;
+  border-top: none;
+  display: flex;
+}
+.chat-footer input {
+  flex: 85%;
+  border: 0;
+  padding: 0 0.7em;
+  font-size: 1em;
+  border-right: 1px dotted #607d8b;
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+  outline: none;
+}
+.chat-footer button {
+  border: 0;
+  cursor: pointer;
+  flex: 15%;
+  background: transparent;
+  font-size: 30px;
+  color: lightgray;
+}
+.chat-footer button:hover {
+  color: #08aff1;
 }
