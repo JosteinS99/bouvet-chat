@@ -12,7 +12,7 @@ const server = http.createServer(app);
 // forteller socket.io at den kan motta spørringer fra adressen til front-enden på localhost:3000
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://bouvet-chat-deployed.vercel.app/",
     methods: ["GET", "POST"],
   },
 });
