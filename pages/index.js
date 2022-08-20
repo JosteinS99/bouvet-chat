@@ -111,6 +111,9 @@ export default function Home() {
     setShowChat(true);
   };
 
+  const chooseGender =
+    'Trykk på "Jente:" eller "Gutt:" og bruk knappen nedenfor til å lage nytt brukernavn. Trykk "Gå til chat" for å begynne å chatte med andre.';
+
   return (
     <div className="chatterom">
       {!showChat ? (
@@ -120,11 +123,7 @@ export default function Home() {
           <h4 className="username">
             {firstName} {lastName}
           </h4>
-          <p>
-            Trykk på "Jente:" eller "Gutt:" og bruk knappen nedenfor til å lage
-            nytt brukernavn. Trykk "Gå til chat" for å begynne å chatte med
-            andre.
-          </p>
+          <p>{chooseGender}</p>
           <div className="gender-selector">
             <label>Jente:</label>
             <input
