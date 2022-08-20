@@ -4,9 +4,7 @@ import io from "socket.io-client";
 import { Chat } from "../Components/Chat";
 
 // lager en kobling til socket io serveren som kjører på localhost:3002
-const socket = io.connect("https://bouvet-chat-deployed.vercel.app/", {
-  transports: ["websocket"],
-});
+const socket = io.connect("http://localhost:3002");
 
 export default function Home() {
   // liste state hvor vi skal lagre data fra API
